@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E4AC3621CCCDF2F00EF523E /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4AC3611CCCDF2F00EF523E /* TableViewCell.swift */; };
+		0E7BA3A91CCB82DC000784B5 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7BA3A81CCB82DC000784B5 /* TableViewController.swift */; };
+		0E7BA3AB1CCB851C000784B5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E7BA3AA1CCB851C000784B5 /* CoreLocation.framework */; };
 		0EE4948A1CC8CE2E00611B6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE494891CC8CE2E00611B6F /* AppDelegate.swift */; };
 		0EE4948C1CC8CE2E00611B6F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE4948B1CC8CE2E00611B6F /* ViewController.swift */; };
 		0EE4948F1CC8CE2E00611B6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EE4948D1CC8CE2E00611B6F /* Main.storyboard */; };
@@ -27,6 +30,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E4AC3611CCCDF2F00EF523E /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		0E7BA3A81CCB82DC000784B5 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		0E7BA3AA1CCB851C000784B5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0EE494861CC8CE2E00611B6F /* Fetch Metro Stations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fetch Metro Stations.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EE494891CC8CE2E00611B6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EE4948B1CC8CE2E00611B6F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E7BA3AB1CCB851C000784B5 /* CoreLocation.framework in Frameworks */,
 				6569E3A23FE21A53860133AD /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -99,6 +106,8 @@
 				0EE494901CC8CE2E00611B6F /* Assets.xcassets */,
 				0EE494921CC8CE2E00611B6F /* LaunchScreen.storyboard */,
 				0EE494951CC8CE2E00611B6F /* Info.plist */,
+				0E7BA3A81CCB82DC000784B5 /* TableViewController.swift */,
+				0E4AC3611CCCDF2F00EF523E /* TableViewCell.swift */,
 			);
 			path = "Fetch Metro Stations";
 			sourceTree = "<group>";
@@ -115,6 +124,7 @@
 		CBE8C84A74063EE6A91A83CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0E7BA3AA1CCB851C000784B5 /* CoreLocation.framework */,
 				68C91E6F4096E36DC70B5653 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -275,6 +285,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EE4948C1CC8CE2E00611B6F /* ViewController.swift in Sources */,
+				0E4AC3621CCCDF2F00EF523E /* TableViewCell.swift in Sources */,
+				0E7BA3A91CCB82DC000784B5 /* TableViewController.swift in Sources */,
 				0EE4948A1CC8CE2E00611B6F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
