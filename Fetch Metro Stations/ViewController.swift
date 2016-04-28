@@ -7,32 +7,114 @@
 //
 
 import UIKit
-import GoogleMaps
+import MapKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, MKMapViewDelegate {
 
-    @IBOutlet var mapView: GMSMapView!
+    
+    @IBOutlet var mapView: MKMapView!
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    var myLocation = CLLocationCoordinate2D()
+    var stationsNameArray : NSArray = NSArray()
+    var stationsDistanceArray : NSDictionary = NSDictionary()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let camera = GMSCameraPosition.cameraWithLatitude(28.6129,
-            longitude: 77.2295, zoom: 12)
-        mapView.camera = camera
-        mapView.myLocationEnabled = true
-        
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2DMake(28.6129, 77.2295)
-        marker.title = "Sydney"
-        marker.snippet = "Australia"
-        marker.map = mapView
-        // Do any additional setup after loading the view, typically from a nib.
+        mapView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.reconfigureView()
+    }
+    
+    func reconfigureView() {
+        mapView.removeAnnotations(mapView.annotations)
+        stationsNameArray = appDelegate.stationsNameArray
+        stationsDistanceArray = appDelegate.stationsDistanceArray
+        myLocation = appDelegate.myLocation
+        let region = MKCoordinateRegionMakeWithDistance(myLocation, 10000, 10000);
+        mapView.setRegion(region, animated: true)
+        let dropPin = MKPointAnnotation()
+        dropPin.coordinate = myLocation
+        dropPin.title = "My Present Location"
+        mapView.addAnnotation(dropPin)
+        self.addMapAnnotations()
+    }
+    
+    //function to add the annotation
+    func addMapAnnotations() {
+        for var i = 0; i < stationsNameArray.count; i++ {
+            let dropPin = CustomAnnotation()
+            let latitude = stationsNameArray.objectAtIndex(i).objectForKey("geometry")?.objectForKey("location")?.objectForKey("lat")!
+            let longitude = stationsNameArray.objectAtIndex(i).objectForKey("geometry")?.objectForKey("location")?.objectForKey("lng")!
+            let coordinate = CLLocationCoordinate2DMake(latitude as! Double, longitude as! Double)
+            print(coordinate)
+            dropPin.coordinate = coordinate
+            dropPin.number = i
+            mapView.addAnnotation(dropPin)
+        }
+        
+        
+    }
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        //set the view of annotation
+        if annotation.isKindOfClass(CustomAnnotation) {
+         let myLocation = annotation as! CustomAnnotation
+           myLocation.title = stationsNameArray.objectAtIndex(myLocation.number!).objectForKey("name")! as? String
+            myLocation.subtitle = "Driving Distance is : \((stationsDistanceArray.objectForKey("rows")!.objectAtIndex(0).objectForKey("elements")!.objectAtIndex(myLocation.number!).objectForKey("distance")!.objectForKey("text")!) as! String)"
+            
+            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("CustomAnnotation")
+            
+            if (annotationView == nil) {
+                annotationView = myLocation.annotationView()
+            }
+                
+            else {
+                annotationView!.annotation = annotation;
+            }
+            
+            annotationView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+            return annotationView;
+            
+        }
+            
+        else {
+            return nil
+        }
+    }
+
+    
+    //function to handle the callout button click
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        if !view.annotation!.isKindOfClass(CustomAnnotation) {
+            return
+        }
+        let annotationTapped: CustomAnnotation = (view.annotation as! CustomAnnotation)
+        print(annotationTapped.number!)
+        print(annotationTapped.title!)
+        self.performSegueWithIdentifier("detailsView", sender: annotationTapped)
+
+    }
+   
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "detailsView") {
+            let sendBy = sender as! CustomAnnotation
+            let destination = segue.destinationViewController as! DetailsViewController
+            destination.name = (sender.title!)!
+            destination.distance = (sender.subtitle!)!
+            destination.address = "Station Address is : \((stationsDistanceArray.objectForKey("destination_addresses")!.objectAtIndex(sendBy.number!)) as! String)"
+        }
+        
+    }
 
 
 }
-

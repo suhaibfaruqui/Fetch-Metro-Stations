@@ -13,10 +13,14 @@ import GoogleMaps
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var stationsNameArray : NSArray = NSArray()
+    var stationsDistanceArray : NSDictionary = NSDictionary()
+    var stationsImageArray : NSMutableArray = NSMutableArray()
+    var myLocation = CLLocationCoordinate2D()
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        GMSServices.provideAPIKey("AIzaSyA7mluQfFXR6J29NzgxCFrgBe4PxzXCX9U")
+        //GMSServices.provideAPIKey("AIzaSyA7mluQfFXR6J29NzgxCFrgBe4PxzXCX9U")
         // Override point for customization after application launch.
         return true
     }

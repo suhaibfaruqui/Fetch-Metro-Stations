@@ -10,6 +10,9 @@
 		0E4AC3621CCCDF2F00EF523E /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4AC3611CCCDF2F00EF523E /* TableViewCell.swift */; };
 		0E7BA3A91CCB82DC000784B5 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7BA3A81CCB82DC000784B5 /* TableViewController.swift */; };
 		0E7BA3AB1CCB851C000784B5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E7BA3AA1CCB851C000784B5 /* CoreLocation.framework */; };
+		0E9704581CCFE6520032C5CE /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9704571CCFE6520032C5CE /* CustomAnnotation.swift */; };
+		0E97045A1CCFE6750032C5CE /* map_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E9704591CCFE6750032C5CE /* map_pin.png */; };
+		0EA329791CD2143600643369 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA329781CD2143600643369 /* DetailsViewController.swift */; };
 		0EE4948A1CC8CE2E00611B6F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE494891CC8CE2E00611B6F /* AppDelegate.swift */; };
 		0EE4948C1CC8CE2E00611B6F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE4948B1CC8CE2E00611B6F /* ViewController.swift */; };
 		0EE4948F1CC8CE2E00611B6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EE4948D1CC8CE2E00611B6F /* Main.storyboard */; };
@@ -33,6 +36,9 @@
 		0E4AC3611CCCDF2F00EF523E /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		0E7BA3A81CCB82DC000784B5 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		0E7BA3AA1CCB851C000784B5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		0E9704571CCFE6520032C5CE /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
+		0E9704591CCFE6750032C5CE /* map_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin.png; sourceTree = "<group>"; };
+		0EA329781CD2143600643369 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		0EE494861CC8CE2E00611B6F /* Fetch Metro Stations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fetch Metro Stations.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EE494891CC8CE2E00611B6F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EE4948B1CC8CE2E00611B6F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +106,7 @@
 		0EE494881CC8CE2E00611B6F /* Fetch Metro Stations */ = {
 			isa = PBXGroup;
 			children = (
+				0E9704591CCFE6750032C5CE /* map_pin.png */,
 				0EE494891CC8CE2E00611B6F /* AppDelegate.swift */,
 				0EE4948B1CC8CE2E00611B6F /* ViewController.swift */,
 				0EE4948D1CC8CE2E00611B6F /* Main.storyboard */,
@@ -108,6 +115,8 @@
 				0EE494951CC8CE2E00611B6F /* Info.plist */,
 				0E7BA3A81CCB82DC000784B5 /* TableViewController.swift */,
 				0E4AC3611CCCDF2F00EF523E /* TableViewCell.swift */,
+				0E9704571CCFE6520032C5CE /* CustomAnnotation.swift */,
+				0EA329781CD2143600643369 /* DetailsViewController.swift */,
 			);
 			path = "Fetch Metro Stations";
 			sourceTree = "<group>";
@@ -218,6 +227,7 @@
 			files = (
 				0EE494941CC8CE2E00611B6F /* LaunchScreen.storyboard in Resources */,
 				0EE494911CC8CE2E00611B6F /* Assets.xcassets in Resources */,
+				0E97045A1CCFE6750032C5CE /* map_pin.png in Resources */,
 				0EE4948F1CC8CE2E00611B6F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,8 +296,10 @@
 			files = (
 				0EE4948C1CC8CE2E00611B6F /* ViewController.swift in Sources */,
 				0E4AC3621CCCDF2F00EF523E /* TableViewCell.swift in Sources */,
+				0E9704581CCFE6520032C5CE /* CustomAnnotation.swift in Sources */,
 				0E7BA3A91CCB82DC000784B5 /* TableViewController.swift in Sources */,
 				0EE4948A1CC8CE2E00611B6F /* AppDelegate.swift in Sources */,
+				0EA329791CD2143600643369 /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
