@@ -13,19 +13,25 @@ class TableViewController: UIViewController,CLLocationManagerDelegate,UITableVie
 
     @IBOutlet var table: UITableView!
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-    var apiKey : String = "AIzaSyD4dwegCF0EPI2iwI7jrnOmPohugtYpyxU"
+    //var apiKey : String = "AIzaSyD4dwegCF0EPI2iwI7jrnOmPohugtYpyxU"
+    var apiKey : String = "AIzaSyDQlSnnmsbZ6JNF6Oahuduo-k15w5ZmCig"
     var locationManager = CLLocationManager()
     var myLocation = CLLocationCoordinate2D()
     var stationsNameArray : NSArray = NSArray()
     var stationsDistanceArray : NSDictionary = NSDictionary()
     var stationsImageArray : NSMutableArray = NSMutableArray()
     var didFindLocation : Bool = true
+    var activityView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         table.delegate = self
         table.dataSource = self
         self.tabBarController!.tabBar.items![1].enabled = false
+        activityView.center = self.view.center
+        self.table.addSubview(activityView)
+        self.activityView.color = UIColor.blueColor()
+        self.activityView.startAnimating()
         self.findLocations()
     }
 
@@ -47,6 +53,8 @@ class TableViewController: UIViewController,CLLocationManagerDelegate,UITableVie
     
     //refresh the data as per new location of device
     @IBAction func refreshLocation(sender: AnyObject) {
+        activityView.center = self.view.center
+        self.activityView.startAnimating()
         self.tabBarController!.tabBar.items![1].enabled = false
         locationManager.startUpdatingLocation()
         didFindLocation = false
@@ -64,11 +72,10 @@ class TableViewController: UIViewController,CLLocationManagerDelegate,UITableVie
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         let currentLocation: CLLocation? = newLocation
         if currentLocation != nil {
-            myLocation.latitude = (currentLocation?.coordinate.latitude)!
-            myLocation.longitude = (currentLocation?.coordinate.longitude)!
-            appDelegate.myLocation = myLocation
-        
             if (didFindLocation == false) {
+                myLocation.latitude = (currentLocation?.coordinate.latitude)!
+                myLocation.longitude = (currentLocation?.coordinate.longitude)!
+                appDelegate.myLocation = myLocation
                 self.fetchMetroStations()
                 didFindLocation = true
             }
@@ -78,41 +85,42 @@ class TableViewController: UIViewController,CLLocationManagerDelegate,UITableVie
     
     //function for searching stations and then loading tableview
     func fetchMetroStations() {
-        
-        print(myLocation)
         if let stationNameIconData = NSData(contentsOfURL: NSURL(string: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=\(self.apiKey)&location=\(myLocation.latitude),\(myLocation.longitude)&radius=5000&type=subway_station")!) {
-        do {
-            let json : NSDictionary = try NSJSONSerialization.JSONObjectWithData(stationNameIconData, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-            stationsNameArray = json["results"] as! NSArray
-            appDelegate.stationsNameArray = stationsNameArray
-            self.addStationImages()
-        } catch {
-            print(error)
-        }
-        var url : String = "https://maps.googleapis.com/maps/api/distancematrix/json?mode=driving&language=en&key=\(self.apiKey)&origins=\(myLocation.latitude),\(myLocation.longitude)&destinations="
-        //Make url for fetching distance
-        for var i=0 ; i < stationsNameArray.count ; i++ {
-            url += "\(stationsNameArray.objectAtIndex(i).objectForKey("geometry")!.objectForKey("location")!.objectForKey("lat")!),\(stationsNameArray.objectAtIndex(i).objectForKey("geometry")!.objectForKey("location")!.objectForKey("lng")!)|"
-        }
-        if let stationDistanceData = NSData(contentsOfURL: NSURL(string: url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)! as String)!) {
             do {
-                let json : NSDictionary = try NSJSONSerialization.JSONObjectWithData(stationDistanceData, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                stationsDistanceArray = json
-                appDelegate.stationsDistanceArray = stationsDistanceArray
+                let json : NSDictionary = try NSJSONSerialization.JSONObjectWithData(stationNameIconData, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                stationsNameArray = json["results"] as! NSArray
+                appDelegate.stationsNameArray = stationsNameArray
+                self.addStationImages()
             } catch {
                 print(error)
             }
-        }
-        table.reloadData()
-        self.tabBarController!.tabBar.items![1].enabled = true
-            
+            if (stationsNameArray.count != 0) {
+                var url : String = "https://maps.googleapis.com/maps/api/distancematrix/json?mode=driving&language=en&key=\(self.apiKey)&origins=\(myLocation.latitude),\(myLocation.longitude)&destinations="
+                //Make url for fetching distance
+                for var i=0 ; i < stationsNameArray.count ; i++ {
+                    url += "\(stationsNameArray.objectAtIndex(i).objectForKey("geometry")!.objectForKey("location")!.objectForKey("lat")!),\(stationsNameArray.objectAtIndex(i).objectForKey("geometry")!.objectForKey("location")!.objectForKey("lng")!)|"
+                }
+                if let stationDistanceData = NSData(contentsOfURL: NSURL(string: url.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)! as String)!) {
+                    do {
+                        let json : NSDictionary = try NSJSONSerialization.JSONObjectWithData(stationDistanceData, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                        stationsDistanceArray = json
+                        appDelegate.stationsDistanceArray = stationsDistanceArray
+                    } catch {
+                        print(error)
+                    }
+                }
+                table.reloadData()
+                self.tabBarController!.tabBar.items![1].enabled = true
+            }
+            else {
+                self.showAlert("No Metro Station in 5 Km radius")
+                table.reloadData()
+            }
         }
         else {
-            let alertController = UIAlertController(title: "Error", message: "Server is not reachable", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            presentViewController(alertController, animated: true, completion: nil)
+            self.showAlert("Either Internet is not working OR Google WebServices is not reachable")
         }
-
+        self.activityView.stopAnimating()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -149,6 +157,12 @@ class TableViewController: UIViewController,CLLocationManagerDelegate,UITableVie
             stationsImageArray.addObject(UIImage(data: data!)!)
         }
         appDelegate.stationsImageArray = stationsImageArray
+    }
+    
+    func showAlert(content: String) {
+        let alertController = UIAlertController(title: "Error", message: content, preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
 }

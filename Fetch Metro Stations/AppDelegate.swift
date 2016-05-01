@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import GoogleMaps
+import MapKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

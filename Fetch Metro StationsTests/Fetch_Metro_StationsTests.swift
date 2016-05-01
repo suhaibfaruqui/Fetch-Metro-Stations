@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import MapKit
 @testable import Fetch_Metro_Stations
 
 class Fetch_Metro_StationsTests: XCTestCase {

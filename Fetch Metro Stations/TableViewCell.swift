@@ -17,20 +17,13 @@ class TableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //self.backgroundColor = UIColor.blueColor()
         self.drivingDistance.numberOfLines = 0
-        //self.drivingDistance.backgroundColor = UIColor.lightGrayColor()
         self.address.numberOfLines = 0
-        //self.address.backgroundColor = UIColor.greenColor()
         self.stationName.numberOfLines = 0
-        //self.stationName.backgroundColor = UIColor.redColor()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

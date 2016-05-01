@@ -15,6 +15,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet var mapView: MKMapView!
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var myLocation = CLLocationCoordinate2D()
+    var myPresentLocation = CLLocationCoordinate2D()
     var stationsNameArray : NSArray = NSArray()
     var stationsDistanceArray : NSDictionary = NSDictionary()
     
@@ -22,6 +23,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        myLocation = appDelegate.myLocation
+        self.reconfigureView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,17 +32,20 @@ class ViewController: UIViewController, MKMapViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+   
     override func viewDidAppear(animated: Bool) {
-        self.reconfigureView()
+        myPresentLocation = appDelegate.myLocation
+        if !(myLocation.latitude == myPresentLocation.latitude && myLocation.longitude == myPresentLocation.longitude) {
+            myLocation = myPresentLocation
+            self.reconfigureView()
+        }
+        mapView.setRegion(MKCoordinateRegionMakeWithDistance(myLocation, 10000, 10000), animated: true)
     }
     
     func reconfigureView() {
         mapView.removeAnnotations(mapView.annotations)
         stationsNameArray = appDelegate.stationsNameArray
         stationsDistanceArray = appDelegate.stationsDistanceArray
-        myLocation = appDelegate.myLocation
-        let region = MKCoordinateRegionMakeWithDistance(myLocation, 10000, 10000);
-        mapView.setRegion(region, animated: true)
         let dropPin = MKPointAnnotation()
         dropPin.coordinate = myLocation
         dropPin.title = "My Present Location"
@@ -54,7 +60,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
             let latitude = stationsNameArray.objectAtIndex(i).objectForKey("geometry")?.objectForKey("location")?.objectForKey("lat")!
             let longitude = stationsNameArray.objectAtIndex(i).objectForKey("geometry")?.objectForKey("location")?.objectForKey("lng")!
             let coordinate = CLLocationCoordinate2DMake(latitude as! Double, longitude as! Double)
-            print(coordinate)
             dropPin.coordinate = coordinate
             dropPin.number = i
             mapView.addAnnotation(dropPin)
@@ -99,8 +104,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
             return
         }
         let annotationTapped: CustomAnnotation = (view.annotation as! CustomAnnotation)
-        print(annotationTapped.number!)
-        print(annotationTapped.title!)
         self.performSegueWithIdentifier("detailsView", sender: annotationTapped)
 
     }
