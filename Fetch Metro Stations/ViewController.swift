@@ -42,6 +42,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
         mapView.setRegion(MKCoordinateRegionMakeWithDistance(myLocation, 10000, 10000), animated: true)
     }
     
+    //function to reconfigure the map
     func reconfigureView() {
         mapView.removeAnnotations(mapView.annotations)
         stationsNameArray = appDelegate.stationsNameArray
@@ -64,33 +65,24 @@ class ViewController: UIViewController, MKMapViewDelegate {
             dropPin.number = i
             mapView.addAnnotation(dropPin)
         }
-        
-        
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        
         //set the view of annotation
         if annotation.isKindOfClass(CustomAnnotation) {
-         let myLocation = annotation as! CustomAnnotation
-           myLocation.title = stationsNameArray.objectAtIndex(myLocation.number!).objectForKey("name")! as? String
+            let myLocation = annotation as! CustomAnnotation
+            myLocation.title = stationsNameArray.objectAtIndex(myLocation.number!).objectForKey("name")! as? String
             myLocation.subtitle = "Driving Distance is : \((stationsDistanceArray.objectForKey("rows")!.objectAtIndex(0).objectForKey("elements")!.objectAtIndex(myLocation.number!).objectForKey("distance")!.objectForKey("text")!) as! String)"
-            
             var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("CustomAnnotation")
-            
             if (annotationView == nil) {
                 annotationView = myLocation.annotationView()
             }
-                
             else {
                 annotationView!.annotation = annotation;
             }
-            
             annotationView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
             return annotationView;
-            
         }
-            
         else {
             return nil
         }
@@ -99,15 +91,14 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     //function to handle the callout button click
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
         if !view.annotation!.isKindOfClass(CustomAnnotation) {
             return
         }
         let annotationTapped: CustomAnnotation = (view.annotation as! CustomAnnotation)
         self.performSegueWithIdentifier("detailsView", sender: annotationTapped)
-
     }
    
+    //function for preparing for passing data to detailsview page
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "detailsView") {
             let sendBy = sender as! CustomAnnotation
@@ -116,8 +107,5 @@ class ViewController: UIViewController, MKMapViewDelegate {
             destination.distance = (sender.subtitle!)!
             destination.address = "Station Address is : \((stationsDistanceArray.objectForKey("destination_addresses")!.objectAtIndex(sendBy.number!)) as! String)"
         }
-        
     }
-
-
 }

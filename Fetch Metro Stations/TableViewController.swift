@@ -159,6 +159,7 @@ class TableViewController: UIViewController,CLLocationManagerDelegate,UITableVie
         appDelegate.stationsImageArray = stationsImageArray
     }
     
+    //function for showing alerts
     func showAlert(content: String) {
         let alertController = UIAlertController(title: "Error", message: content, preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
