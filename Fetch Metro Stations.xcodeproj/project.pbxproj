@@ -12,6 +12,8 @@
 		0E1A9D3D1CD6819B00FE8244 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EE4948D1CC8CE2E00611B6F /* Main.storyboard */; };
 		0E1A9D471CD681F200FE8244 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EE494901CC8CE2E00611B6F /* Assets.xcassets */; };
 		0E1A9D481CD681F600FE8244 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EE494921CC8CE2E00611B6F /* LaunchScreen.storyboard */; };
+		0E49F1601CD787BC00C0D234 /* background1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E49F15F1CD787BC00C0D234 /* background1.png */; };
+		0E49F1661CD78A5100C0D234 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E49F1651CD78A5100C0D234 /* background.png */; };
 		0E4AC3621CCCDF2F00EF523E /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4AC3611CCCDF2F00EF523E /* TableViewCell.swift */; };
 		0E7BA3A91CCB82DC000784B5 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7BA3A81CCB82DC000784B5 /* TableViewController.swift */; };
 		0E7BA3AB1CCB851C000784B5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E7BA3AA1CCB851C000784B5 /* CoreLocation.framework */; };
@@ -40,6 +42,8 @@
 /* Begin PBXFileReference section */
 		0E1A9D371CD6267100FE8244 /* compass-point-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compass-point-7.png"; sourceTree = "<group>"; };
 		0E1A9D381CD6267100FE8244 /* list-simple-star-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-simple-star-7.png"; sourceTree = "<group>"; };
+		0E49F15F1CD787BC00C0D234 /* background1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background1.png; sourceTree = "<group>"; };
+		0E49F1651CD78A5100C0D234 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		0E4AC3611CCCDF2F00EF523E /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		0E7BA3A81CCB82DC000784B5 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		0E7BA3AA1CCB851C000784B5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -82,6 +86,7 @@
 		0E1A9D3B1CD626F800FE8244 /* List View */ = {
 			isa = PBXGroup;
 			children = (
+				0E49F1651CD78A5100C0D234 /* background.png */,
 				0E7BA3A81CCB82DC000784B5 /* TableViewController.swift */,
 				0E4AC3611CCCDF2F00EF523E /* TableViewCell.swift */,
 				0E1A9D381CD6267100FE8244 /* list-simple-star-7.png */,
@@ -92,6 +97,7 @@
 		0E1A9D3C1CD6271900FE8244 /* Map View */ = {
 			isa = PBXGroup;
 			children = (
+				0E49F15F1CD787BC00C0D234 /* background1.png */,
 				0E1A9D371CD6267100FE8244 /* compass-point-7.png */,
 				0E9704591CCFE6750032C5CE /* map_pin.png */,
 				0EE4948B1CC8CE2E00611B6F /* ViewController.swift */,
@@ -236,7 +242,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EE494941CC8CE2E00611B6F /* LaunchScreen.storyboard in Resources */,
+				0E49F1661CD78A5100C0D234 /* background.png in Resources */,
 				0EE494911CC8CE2E00611B6F /* Assets.xcassets in Resources */,
+				0E49F1601CD787BC00C0D234 /* background1.png in Resources */,
 				0E97045A1CCFE6750032C5CE /* map_pin.png in Resources */,
 				0E1A9D3A1CD6267100FE8244 /* list-simple-star-7.png in Resources */,
 				0EE4948F1CC8CE2E00611B6F /* Main.storyboard in Resources */,

@@ -20,6 +20,7 @@ class TableViewCell: UITableViewCell {
         self.drivingDistance.numberOfLines = 0
         self.address.numberOfLines = 0
         self.stationName.numberOfLines = 0
+        self.backgroundColor = UIColor(patternImage: UIImage(named: "background.png")!)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

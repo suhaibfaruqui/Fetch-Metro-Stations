@@ -23,6 +23,7 @@ class DetailsViewController: UIViewController {
         label.text = name
         distanceLabel.text = distance
         addressLabel.text = address
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "background1.png")!)
     }
 
     override func didReceiveMemoryWarning() {

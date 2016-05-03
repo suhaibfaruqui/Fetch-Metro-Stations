@@ -7,7 +7,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Metro Stations MapView-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="mapView" id="BYZ-38-t0r" customClass="ViewController" customModule="Fetch_Metro_Stations" customModuleProvider="target" sceneMemberID="viewController">
@@ -33,7 +33,7 @@
                             <constraint firstItem="OYV-gg-Iz3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zl9-zN-DSO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="tkW-9v-hbn"/>
+                    <navigationItem key="navigationItem" title="Metro Stations MapView" id="tkW-9v-hbn"/>
                     <connections>
                         <outlet property="mapView" destination="OYV-gg-Iz3" id="Nbs-iy-8Mx"/>
                         <segue destination="AJJ-cm-JwH" kind="show" identifier="detailsView" id="Vpy-k6-8tX"/>
@@ -164,18 +164,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="38" id="mE4-AG-CMq"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I74-gw-2KX">
-                                                    <rect key="frame" x="121" y="46" width="314" height="75"/>
-                                                    <animations/>
-                                                    <color key="backgroundColor" red="0.83921568627450982" green="0.92941176470588238" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="4vC-Kt-alM"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -204,6 +193,17 @@
                                                         <constraint firstAttribute="height" constant="91" id="LQ9-Hp-xtK"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I74-gw-2KX">
+                                                    <rect key="frame" x="121" y="46" width="314" height="75"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" red="0.83921568627450982" green="0.92941176470588238" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="4vC-Kt-alM"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <animations/>
                                             <constraints>
