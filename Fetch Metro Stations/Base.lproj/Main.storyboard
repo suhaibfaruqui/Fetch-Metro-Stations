@@ -20,17 +20,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="OYV-gg-Iz3">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <animations/>
                             </mapView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="OYV-gg-Iz3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="84p-5W-bFt"/>
-                            <constraint firstAttribute="trailing" secondItem="OYV-gg-Iz3" secondAttribute="trailing" id="AfM-hr-nqt"/>
-                            <constraint firstAttribute="bottom" secondItem="OYV-gg-Iz3" secondAttribute="bottom" id="ayQ-uC-6NF"/>
-                            <constraint firstItem="OYV-gg-Iz3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zl9-zN-DSO"/>
+                            <constraint firstItem="OYV-gg-Iz3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Eew-b9-dsb"/>
+                            <constraint firstItem="OYV-gg-Iz3" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="dZk-tA-b6L"/>
+                            <constraint firstAttribute="trailing" secondItem="OYV-gg-Iz3" secondAttribute="trailing" id="hUK-5p-lGv"/>
+                            <constraint firstItem="OYV-gg-Iz3" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="hm3-nU-iFO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Metro Stations MapView" id="tkW-9v-hbn"/>

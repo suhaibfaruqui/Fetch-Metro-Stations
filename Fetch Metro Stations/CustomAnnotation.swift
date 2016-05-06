@@ -19,7 +19,7 @@ class CustomAnnotation: NSObject, MKAnnotation {
     func annotationView() -> MKAnnotationView {
         let annotationView = MKAnnotationView(annotation: self, reuseIdentifier: "CustomAnnotation")
         annotationView.enabled = true
-        annotationView.canShowCallout = true
+        annotationView.canShowCallout = false
         annotationView.image = UIImage(named: "map_pin")
         return annotationView
     }

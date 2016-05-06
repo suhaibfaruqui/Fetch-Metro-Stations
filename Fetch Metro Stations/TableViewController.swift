@@ -165,5 +165,4 @@ class TableViewController: UIViewController,CLLocationManagerDelegate,UITableVie
         alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         presentViewController(alertController, animated: true, completion: nil)
     }
-    
 }
