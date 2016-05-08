@@ -128,27 +128,22 @@ class ViewController: UIViewController, MKMapViewDelegate {
             imageView.backgroundColor = UIColor.whiteColor()
             
             //title
-            let title: UILabel = UILabel(frame: CGRectMake(imageView.frame.origin.x + 60, 10, 300, 20))
+            var title: UILabel = UILabel(frame: CGRectMake(imageView.frame.origin.x + 60, 10, 180, 20))
             title.textColor = UIColor.blackColor()
             title.numberOfLines = 0
             title.font = UIFont(name: "Arial-BoldMT", size: 15)
             title.text = "\((stationsNameArray.objectAtIndex(myLocation.number!).objectForKey("name")!) as! String) Metro Station"
-            title.sizeToFit()
+            title = changeHeightOfLabel(title)
+            title.textAlignment = .Center
             title.backgroundColor = UIColor(red: 0, green: 1, blue: 0, alpha: 1)
             
             //subtitle
-            let subTitle: UILabel = UILabel(frame: CGRectMake(title.frame.origin.x, title.frame.size.height + 10, 300, 20))
+            let subTitle: UILabel = UILabel(frame: CGRectMake(title.frame.origin.x, title.frame.size.height + 10, 180, 20))
             subTitle.text = "Driving Distance is : \((stationsDistanceArray.objectForKey("rows")!.objectAtIndex(0).objectForKey("elements")!.objectAtIndex(myLocation.number!).objectForKey("distance")!.objectForKey("text")!) as! String)"
             subTitle.font = UIFont(name: "Arial", size: 14)
             subTitle.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
             subTitle.textColor = UIColor.whiteColor()
-            subTitle.sizeToFit()
-            if (title.frame.size.width > subTitle.frame.size.width) {
-                subTitle.frame.size.width = title.frame.size.width
-            }
-            else {
-                title.frame.size.width = subTitle.frame.size.width
-            }
+            subTitle.textAlignment = .Center
             
             //button
             let button: UIButton = UIButton(type: .RoundedRect)
@@ -164,11 +159,11 @@ class ViewController: UIViewController, MKMapViewDelegate {
             calloutView = UIView(frame: CGRectMake((view.frame.origin.x) / 2 - 20, view.frame.origin.y - calloutSize.height, calloutSize.width, calloutSize.height))
             calloutView.backgroundColor = UIColor(red: 0.5, green: 0.8, blue: 1, alpha: 0.5)
             calloutView.layer.cornerRadius = 15
-            calloutView.clipsToBounds = true
             calloutView.addSubview(imageView)
             calloutView.addSubview(title)
             calloutView.addSubview(subTitle)
             calloutView.addSubview(button)
+            // set conditions if no space for callout display
             if (calloutView.frame.size.height > view.frame.origin.y) {
                 calloutView.frame.origin.y = view.frame.origin.y + 15
             }
@@ -204,5 +199,15 @@ class ViewController: UIViewController, MKMapViewDelegate {
         let destImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return destImage
+    }
+    
+    func changeHeightOfLabel(label: UILabel) -> UILabel {
+        let fixedWidth = label.frame.size.width
+        label.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+        let newSize = label.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.max))
+        var newFrame = label.frame
+        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        label.frame = newFrame
+        return label
     }
 }
