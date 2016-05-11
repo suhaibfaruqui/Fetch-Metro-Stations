@@ -19,7 +19,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
     var stationsNameArray : NSArray = NSArray()
     var stationsDistanceArray : NSDictionary = NSDictionary()
     var stationsImageArray : NSMutableArray = NSMutableArray()
-    var calloutView : UIView = UIView()
+    var calloutView : UIViewSubclass = UIViewSubclass()
+    var centerCoordinate : CLLocationCoordinate2D = CLLocationCoordinate2D()
     
     
     override func viewDidLoad() {
@@ -120,6 +121,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+        calloutView.removeFromSuperview()
         if view.annotation!.isKindOfClass(CustomAnnotation) {
             let myLocation = view.annotation as! CustomAnnotation
             //image view
@@ -155,26 +157,38 @@ class ViewController: UIViewController, MKMapViewDelegate {
             button.addTarget(self, action: "annotationButtonTapped:", forControlEvents: .TouchUpInside)
             
             //callout view
-            let calloutSize: CGSize = CGSizeMake(title.frame.size.width + imageView.frame.size.width + 30, title.frame.size.height + subTitle.frame.size.height + 50)
-            calloutView = UIView(frame: CGRectMake((view.frame.origin.x) / 2 - 20, view.frame.origin.y - calloutSize.height, calloutSize.width, calloutSize.height))
-            calloutView.backgroundColor = UIColor(red: 0.5, green: 0.8, blue: 1, alpha: 0.5)
+            let calloutSize: CGSize = CGSizeMake(title.frame.size.width + imageView.frame.size.width + 30, title.frame.size.height + subTitle.frame.size.height + button.frame.size.height + 40)
+            calloutView = UIViewSubclass(frame: CGRectMake(view.frame.origin.x - (calloutSize.width / 2) + 7, view.frame.origin.y - calloutSize.height, calloutSize.width, calloutSize.height))
+            //calloutView.backgroundColor = UIColor(red: 0.5, green: 0.8, blue: 1, alpha: 0.8)
+            calloutView.backgroundColor = UIColor.clearColor()
             calloutView.layer.cornerRadius = 15
             calloutView.addSubview(imageView)
             calloutView.addSubview(title)
             calloutView.addSubview(subTitle)
             calloutView.addSubview(button)
             // set conditions if no space for callout display
+            var centerScreenPoint: CGPoint = mapView.convertCoordinate(mapView.centerCoordinate, toPointToView: mapView)
             if (calloutView.frame.size.height > view.frame.origin.y) {
-                calloutView.frame.origin.y = view.frame.origin.y + 15
+                centerScreenPoint.y = centerScreenPoint.y - calloutView.frame.size.height + view.frame.origin.y
+                centerCoordinate = mapView.convertPoint(centerScreenPoint, toCoordinateFromView: mapView)
+                calloutView.frame.origin.y =  calloutView.frame.origin.y + calloutView.frame.size.height - view.frame.origin.y
+                mapView.setCenterCoordinate(centerCoordinate, animated: true)
             }
             if (calloutView.frame.size.width > (UIScreen.mainScreen().bounds.width - calloutView.frame.origin.x)) {
-                calloutView.frame.origin.x = UIScreen.mainScreen().bounds.width - calloutView.frame.size.width
+                centerScreenPoint.x = centerScreenPoint.x + (calloutView.frame.origin.x + calloutView.frame.size.width - UIScreen.mainScreen().bounds.width)
+                centerCoordinate = mapView.convertPoint(centerScreenPoint, toCoordinateFromView: mapView)
+                calloutView.frame.origin.x =  calloutView.frame.origin.x - (calloutView.frame.origin.x + calloutView.frame.size.width - UIScreen.mainScreen().bounds.width)
+                mapView.setCenterCoordinate(centerCoordinate, animated: true)
+                //NSThread.sleepForTimeInterval(4)
             }
             if (calloutView.frame.origin.x < 0) {
-                calloutView.frame.origin.x = 2
+                centerScreenPoint.x = centerScreenPoint.x + calloutView.frame.origin.x
+                centerCoordinate = mapView.convertPoint(centerScreenPoint, toCoordinateFromView: mapView)
+                calloutView.frame.origin.x =  0
+                mapView.setCenterCoordinate(centerCoordinate, animated: true)
             }
-            
             mapView.addSubview(calloutView)
+            //mapView.setCenterCoordinate(centerCoordinate, animated: true)
         }
     }
     

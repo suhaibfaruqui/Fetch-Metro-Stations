@@ -19,6 +19,7 @@
 		0E7BA3AB1CCB851C000784B5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E7BA3AA1CCB851C000784B5 /* CoreLocation.framework */; };
 		0E90C4831CD687EA00C0066B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E90C4821CD687EA00C0066B /* MapKit.framework */; };
 		0E90C4841CD6894300C0066B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE494891CC8CE2E00611B6F /* AppDelegate.swift */; };
+		0E96CEF21CE260700026BB53 /* UIViewSubclass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E96CEF11CE260700026BB53 /* UIViewSubclass.swift */; };
 		0E9704581CCFE6520032C5CE /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9704571CCFE6520032C5CE /* CustomAnnotation.swift */; };
 		0E97045A1CCFE6750032C5CE /* map_pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E9704591CCFE6750032C5CE /* map_pin.png */; };
 		0EA329791CD2143600643369 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA329781CD2143600643369 /* DetailsViewController.swift */; };
@@ -48,6 +49,7 @@
 		0E7BA3A81CCB82DC000784B5 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		0E7BA3AA1CCB851C000784B5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0E90C4821CD687EA00C0066B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		0E96CEF11CE260700026BB53 /* UIViewSubclass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewSubclass.swift; sourceTree = "<group>"; };
 		0E9704571CCFE6520032C5CE /* CustomAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
 		0E9704591CCFE6750032C5CE /* map_pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map_pin.png; sourceTree = "<group>"; };
 		0EA329781CD2143600643369 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				0EE4948B1CC8CE2E00611B6F /* ViewController.swift */,
 				0E9704571CCFE6520032C5CE /* CustomAnnotation.swift */,
 				0EA329781CD2143600643369 /* DetailsViewController.swift */,
+				0E96CEF11CE260700026BB53 /* UIViewSubclass.swift */,
 			);
 			name = "Map View";
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				0E90C4841CD6894300C0066B /* AppDelegate.swift in Sources */,
 				0EE4948C1CC8CE2E00611B6F /* ViewController.swift in Sources */,
 				0E4AC3621CCCDF2F00EF523E /* TableViewCell.swift in Sources */,
+				0E96CEF21CE260700026BB53 /* UIViewSubclass.swift in Sources */,
 				0E9704581CCFE6520032C5CE /* CustomAnnotation.swift in Sources */,
 				0E7BA3A91CCB82DC000784B5 /* TableViewController.swift in Sources */,
 				0EA329791CD2143600643369 /* DetailsViewController.swift in Sources */,
